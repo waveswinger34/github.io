@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Basic syntax of a function</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<p>I&#39;ve been asked on a few occasions what is the deal with R user-written functions. First of all, how does the syntax work? And second of all, why would you ever want to do this? </p>
+
+<p>In Stata, we don&#39;t write functions; we execute built-in commands like <strong>browse</strong> or <strong>gen</strong> or <strong>logit</strong>. You can write your own programs that create new commands (like ado files) but it&#39;s less common for users to do so.</p>
+
+<p>In R, there are built-in functions like <strong>summary()</strong> or <strong>glm()</strong> or <strong>median()</strong>, but you can also write your own functions. You can write a quick, one-line function or long elaborate functions. I use functions all the time to make my code cleaner and less repetitive.</p>
+
+<p>In this post I&#39;ll go over the basics of how to write functions. In the next post, I&#39;ll explain what kinds of functions I have used commonly in public health research that have improved my data cleaning and analyses.</p>
+
+<h2>Basic syntax of a function</h2>
+
+<p>A function needs to have a name, probably at least one argument (although it doesn&#39;t have to), and a body of code that does something. At the end it usually should (although doesn&#39;t have to) return an object out of the function. The important idea behind functions is that objects that are created within the function are local to the environment of the function - they don&#39;t exist outside of the function. But you can &ldquo;return&rdquo; the value of the object from the function, meaning pass the value of it into the global environment. I&#39;ll go over this in more detail.</p>
+
+<p>Functions need to have curly braces around the statements, like so:</p>
+
+<pre><code class="r">name.of.function &lt;- function(argument1, argument2) {
+    statements
+    return(something)
+}
+</code></pre>
+
+<p>The argument can be any type of object (like a scalar, a matrix, a dataframe, a vector, a logical, etc), and it&#39;s not necessary to define what it is in any way. As a very simple example, we can write a function that squares an incoming argument. The function below takes the argument x and multiplies it by itself. It saves this value into the object called square, and then it returns the value of the object square.</p>
+
+<h3>&gt;&gt;&gt;Writing and calling a function</h3>
+
+<pre><code class="r">square.it &lt;- function(x) {
+    square &lt;- x * x
+    return(square)
+}
+</code></pre>
+
+<p>I can now call the function by passing in a scalar or a vector or matrix as its argument, because all of those objects will square nicely. But it won&#39;t work if I input a character as its argument because although it will pass &ldquo;hi&rdquo; into the function, R can&#39;t multiply &ldquo;hi&rdquo;.</p>
+
+<pre><code class="r"># square a number
+square.it(5)
+</code></pre>
+
+<pre><code>## [1] 25
+</code></pre>
+
+<pre><code class="r"># square a vector
+square.it(c(1, 4, 2))
+</code></pre>
+
+<pre><code>## [1]  1 16  4
+</code></pre>
+
+<pre><code class="r"># square a character (not going to happen)
+square.it(&quot;hi&quot;)
+</code></pre>
+
+<pre><code>## Error: non-numeric argument to binary operator
+</code></pre>
+
+<p>I can also pass in an object that I already have saved. For example, here I have a matrix called matrix1, so I pass that into the <strong>square.it() function</strong>. R takes this matrix1 into the function as x.  That is, in the local function environment it is now called x, where it is squared, and returned.</p>
+
+<pre><code class="r">matrix1 &lt;- cbind(c(3, 10), c(4, 5))
+square.it(matrix1)
+</code></pre>
+
+<pre><code>##      [,1] [,2]
+## [1,]    9   16
+## [2,]  100   25
+</code></pre>
+
+<h3>&gt;&gt;&gt;Local vs global environment</h3>
+
+<p>Now, it&#39;s not necessarily the case that you must use <strong>return()</strong> at the end of your function. The reason you return an object is if you&#39;ve saved the value of your statements into an object inside the function - in this case, the objects in the function are in a local environment and won&#39;t appear in your global environment. See how it works in the following two examples:</p>
+
+<pre><code class="r">fun1 &lt;- function(x) {
+    3 * x - 1
+}
+fun1(5)
+</code></pre>
+
+<pre><code>## [1] 14
+</code></pre>
+
+<pre><code class="r">fun2 &lt;- function(x) {
+    y &lt;- 3 * x - 1
+}
+fun2(5)
+</code></pre>
+
+<p>In the first function, I just evaluate the statement 3*x-1 without saving it anywhere inside the function. So when I run fun1(5), the result comes popping out of the function. However, when I call fun2(5), nothing happens. That&#39;s because the object y that I saved my result into doesn&#39;t exist outside the function and I haven&#39;t used <strong>return(y)</strong> to pass the value of y outside the function. When I try to print y, it doesn&#39;t exist because it was created in the local environment of the function.</p>
+
+<pre><code class="r">print(y)
+</code></pre>
+
+<pre><code>## Error: object &#39;y&#39; not found
+</code></pre>
+
+<p>I can return the <em>value</em> of y using the <strong>return(y)</strong> at the end of the function fun2, but I can&#39;t return the object itself; it&#39;s stuck inside the function.</p>
+
+<h2>Getting more complex</h2>
+
+<p>Obviously writing a whole function to square something when you could just use the ^ operator is silly. But you can do much more complicated things in functions, once you get the hang of them. </p>
+
+<h3>&gt;&gt;&gt;Calling other functions and passing multiple arguments</h3>
+
+<p>First, you can pass multiple arguments into a function and you can call other functions within your function. Here&#39;s an example. I&#39;m passing in 3 arguments which I want to be a matrix, a vector, and a scalar. In the function body, I first call my previous function <strong>square.it()</strong> and use it to square the scalar. Then I multiply the matrix by the vector. Then I multiply those two results together and return the final object.</p>
+
+<pre><code class="r">my.fun &lt;- function(X.matrix, y.vec, z.scalar) {
+
+    # use my previous function square.it() to square the scalar and save result
+    sq.scalar &lt;- square.it(z.scalar)
+
+    # multiply the matrix by the vector using %*% operator
+    mult &lt;- X.matrix %*% y.vec
+
+    # multiply the two resulting objects together to get a final object
+    final &lt;- mult * sq.scalar
+
+    # return the result
+    return(final)
+}
+</code></pre>
+
+<p>When you have multiple arguments in a function that you call, R will just evaluate them in order of how you&#39;ve written the function (the first argument will correspond to X.matrix, the second y.vec, and so on), but for clarity I would name the arguments in the function call. In this example below, I already have two saved objects, my.mat and my.vec that I pass through as the X.matrix and y.vec arguments, and then I just assign the z.scalar argument the number 9.</p>
+
+<pre><code class="r"># save a matrix and a vector object
+my.mat &lt;- cbind(c(1, 3, 4), c(5, 4, 3))
+my.vec &lt;- c(4, 3)
+
+# pass my.mat and my.vec into the my.fun function
+my.fun(X.matrix = my.mat, y.vec = my.vec, z.scalar = 9)
+</code></pre>
+
+<pre><code>##      [,1]
+## [1,] 1539
+## [2,] 1944
+## [3,] 2025
+</code></pre>
+
+<pre><code class="r"># this is the same as
+my.fun(my.mat, my.vec, 9)
+</code></pre>
+
+<pre><code>##      [,1]
+## [1,] 1539
+## [2,] 1944
+## [3,] 2025
+</code></pre>
+
+<h3>&gt;&gt;&gt;Returning a list of objects</h3>
+
+<p>Also, if you need to return multiple objects from a function, you can use <strong>list()</strong> to list them together. An example of this is my <a href="http://rforpublichealth.blogspot.com/2013/06/sample-size-calculations-equivalent-to.html">blog post on sample size functions.</a></p>
+
+<p>For example:</p>
+
+<pre><code class="r">another.fun &lt;- function(sq.matrix, vector) {
+
+    # transpose matrix and square the vector
+    step1 &lt;- t(sq.matrix)
+    step2 &lt;- vector * vector
+
+    # save both results in a list and return
+    final &lt;- list(step1, step2)
+    return(final)
+}
+
+# call the function and save result in object called outcome
+outcome &lt;- another.fun(sq.matrix = cbind(c(1, 2), c(3, 4)), vector = c(2, 3))
+
+# print the outcome list
+print(outcome)
+</code></pre>
+
+<pre><code>## [[1]]
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## 
+## [[2]]
+## [1] 4 9
+</code></pre>
+
+<p>Now to separate those objects for use in your further code, you can extract them using the [[]] operator:</p>
+
+<pre><code class="r">### extract first in list
+outcome[[1]]
+</code></pre>
+
+<pre><code>##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+</code></pre>
+
+<pre><code class="r">
+## extract second in list
+outcome[[2]]
+</code></pre>
+
+<pre><code>## [1] 4 9
+</code></pre>
+
+<h2> Tricks for troubleshooting and debugging</h2>
+
+<p>When you execute multiple statements in a function, sometimes things go wrong. What&#39;s nice about functions is that R evalutes every statement until it reaches an error. So in the last function, the dimensions of the objects really matter. You can&#39;t multiply matrices of incomptabile dimensions. Like this:</p>
+
+<pre><code class="r">my.fun(X.matrix = my.mat, y.vec = c(2, 3, 6, 4, 1), z.scalar = 9)
+</code></pre>
+
+<pre><code>## Error: non-conformable arguments
+</code></pre>
+
+<h3>&gt;&gt;&gt;Using the Debug() function</h3>
+
+<p>When you have an error, one thing you can do is use R&#39;s built-in debugger <strong>debug()</strong> to find at what point the error occurs. You indicate which function you want to debug, then run your statement calling the function, and R shows you at what point the function stops because of errors:</p>
+
+<pre><code class="r">debug(my.fun)
+my.fun(X.matrix = my.mat, y.vec = c(2, 3, 6, 4, 1), z.scalar = 9)
+</code></pre>
+
+<pre><code>## debugging in: my.fun(X.matrix = my.mat, y.vec = c(2, 3, 6, 4, 1), z.scalar = 9)
+## debug at &lt;text&gt;#1: {
+##     sq.scalar &lt;- square.it(z.scalar)
+##     mult &lt;- X.matrix %*% y.vec
+##     final &lt;- mult * sq.scalar
+##     return(final)
+## }
+## debug at &lt;text&gt;#4: sq.scalar &lt;- square.it(z.scalar)
+## debug at &lt;text&gt;#7: mult &lt;- X.matrix %*% y.vec
+</code></pre>
+
+<pre><code>## Error: non-conformable arguments
+</code></pre>
+
+<p>We see that the first line calling the <strong>square.it()</strong> function was fine, but then an error occurred in the line defining mult. This debugging is useful especially if you had many more statements in your function that multiplied matrices and you weren&#39;t sure which one was causing the issues. So now we know the problem is that X.matrix and y.vec won&#39;t multiply. But we still need to know why they won&#39;t multiply. </p>
+
+<p>More on debugging <a href="http://www.stats.uwo.ca/faculty/murdoch/software/debuggingR/debug.shtml">can be found here.</a></p>
+
+<h3>&gt;&gt;&gt;Printing out what&#39;s happening (sanity checks)</h3>
+
+<p>At this point, a good way to troubleshoot this is to print out the dimensions or lengths of the objects or even the objects themselves that are going into the statement causing errors. The great part about functions is that they evaluate all the way until there&#39;s an error. So you can see what is happening inside your function before the error.</p>
+
+<p>If the object is too long, you can <strong>print(head(object))</strong>. This helps to see if you&#39;re doing what you think you&#39;re doing. Note that you have to use the function <strong>print()</strong> to actually print out anything from within a function.</p>
+
+<pre><code class="r">my.fun &lt;- function(X.matrix, y.vec, z.scalar) {
+    print(&quot;xmatrix&quot;)
+    print(X.matrix)
+
+    print(&quot;yvec&quot;)
+    print(y.vec)
+
+    print(&quot;Dimensions&quot;)
+    print(dim(X.matrix))
+    print(length(y.vec))
+
+    # use my previous function square.it() to square the scalar and save result
+    sq.scalar &lt;- square.it(z.scalar)
+    print(paste(&quot;sq.scalar=&quot;, sq.scalar))
+
+    # multiply the matrix by the vector using %*% operator
+    mult &lt;- X.matrix %*% y.vec
+
+    # multiply the two resulting objects together to get a final object
+    final &lt;- mult * sq.scalar
+
+    # return the result
+    return(final)
+}
+
+my.fun(X.matrix = my.mat, y.vec = c(2, 3, 6, 4, 1), z.scalar = 9)
+</code></pre>
+
+<pre><code>## [1] &quot;xmatrix&quot;
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    3    4
+## [3,]    4    3
+## [1] &quot;yvec&quot;
+## [1] 2 3 6 4 1
+## [1] &quot;Dimensions&quot;
+## [1] 3 2
+## [1] 5
+## [1] &quot;sq.scalar= 81&quot;
+</code></pre>
+
+<pre><code>## Error: non-conformable arguments
+</code></pre>
+
+<p>Now we can see the actual dimensions of the objects and fix them accordingly. This example is really simple, but you can imagine that if you&#39;ve written a long function that uses many arguments, you could easily lose track of them and not be sure where the issue in your function was. You can also throw in these statements along the way as sanity checks to make sure that things are proceeding as you think they should, even if there isn&#39;t any error.</p>
+
+<h3>&gt;&gt;&gt;Using the stop() and stopifnot() functions to write your own error messages</h3>
+
+<p>One other trick you can use is writing your own error messages using the <strong>stop()</strong> and <strong>stopifnot()</strong> functions. In this example, if I know I need dimensions to be the right size, I can check them and print out a message that says they are incorrect. That way I know what the issue is immediately. Here&#39;s an example:</p>
+
+<pre><code class="r">my.second.fun &lt;- function(matrix, vector) {
+
+    if (dim(matrix)[2] != length(vector)) {
+        stop(&quot;Can&#39;t multiply matrix%*%vector because the dimensions are wrong&quot;)
+    }
+
+    product &lt;- matrix %*% vector
+
+    return(product)
+
+}
+
+# function works when dimensions are right
+my.second.fun(my.mat, c(6, 5))
+</code></pre>
+
+<pre><code>##      [,1]
+## [1,]   31
+## [2,]   38
+## [3,]   39
+</code></pre>
+
+<pre><code class="r"># function call triggered error
+my.second.fun(my.mat, c(6, 5, 7))
+</code></pre>
+
+<pre><code>## Error: Can&#39;t multiply matrix%*%vector because the dimensions are wrong
+</code></pre>
+
+<p>You can do these kinds of error messages for yourself as checks so you know exactly what triggered the error. You can think about putting in a check for if the value of an object is 0 if you are dividing by it as another example. </p>
+
+<h2>Good function writing practices</h2>
+
+<p>Based on my experience, there are a few good practices that I would recommend keeping in mind when writing function.</p>
+
+<ol>
+<li><p>Keep your functions short. Remember you can use them to call other functions!</p>
+
+<ul>
+<li>If things start to get very long, you can probably split up your function into more manageable chunks that call other functions. This makes your code cleaner and easily testable.</li>
+<li>It also makes your code easy to update. You only have to change one function and every other function that uses that function will also be automatically updated.</li>
+</ul></li>
+<li><p>Put in comments on what are the inputs to the function, what the function does, and what is the output. </p></li>
+<li><p>Check for errors along the way.</p>
+
+<ul>
+<li>Try out your function with simple examples to make sure it&#39;s working properly</li>
+<li>Use debugging and error messages, as well as sanity checks as you build your function.</li>
+</ul></li>
+</ol>
+
+<p>The next post will go over examples of useful functions that you can use in your day to day R coding.</p>
+
+</body>
+
+</html>
+
